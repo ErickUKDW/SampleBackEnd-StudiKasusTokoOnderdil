@@ -5,14 +5,18 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+using BO;
+using DAL;
+
 namespace SampleBackEnd.Controllers
 {
     public class JenisMotorController : ApiController
     {
         // GET: api/JenisMotor
-        public IEnumerable<string> Get()
+        public IEnumerable<JenisMotor> Get()
         {
-            return new string[] { "value1", "value2" };
+            JenisMotorDAL jenisMotorDAL = new JenisMotorDAL();
+            return jenisMotorDAL.GetAll();
         }
 
         // GET: api/JenisMotor/5
