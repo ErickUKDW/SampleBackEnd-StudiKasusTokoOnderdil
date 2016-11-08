@@ -17,5 +17,17 @@ namespace DAL
         {
             return ConfigurationManager.ConnectionStrings["StokDbConnectionString"].ConnectionString;
         }
+
+        public IEnumerable<JenisMotor> GetAll()
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"select * from JenisMotor 
+                                  order by NamaJenisMotor asc";
+
+                var results = conn.Query<JenisMotor>(strSql);
+                return results;
+            }
+        }
     }
 }
