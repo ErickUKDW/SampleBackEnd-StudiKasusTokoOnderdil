@@ -27,8 +27,18 @@ namespace SampleBackEnd.Controllers
         }
 
         // POST: api/Kategori
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post(Kategori kategori)
         {
+            KategoriDAL kategoriDAL = new KategoriDAL();
+            try
+            {
+                kategoriDAL.Create(kategori);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT: api/Kategori/5
