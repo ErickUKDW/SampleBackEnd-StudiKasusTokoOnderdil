@@ -106,7 +106,24 @@ namespace DAL
                     throw new Exception(sqlEx.Number + " - " + sqlEx.Message);
                 }
             }
+        }
 
+        public void Delete(int KategoriId)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"delete from Kategori 
+                                  where KategoriId=@KategoriId";
+                var par = new { KategoriId = KategoriId };
+                try
+                {
+                    conn.Execute(strSql, par);
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Number + " - " + sqlEx.Message);
+                }
+            }
         }
 
     }

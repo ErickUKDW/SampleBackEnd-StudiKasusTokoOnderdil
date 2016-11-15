@@ -57,8 +57,18 @@ namespace SampleBackEnd.Controllers
         }
 
         // DELETE: api/Kategori/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            KategoriDAL kategoriDAL = new KategoriDAL();
+            try
+            {
+                kategoriDAL.Delete(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
