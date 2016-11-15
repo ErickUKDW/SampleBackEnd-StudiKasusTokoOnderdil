@@ -51,6 +51,20 @@ namespace DAL
             }
         }
 
+        public Kategori GetById(int KategoriId)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"select * from Kategori 
+                              where KategoriId=@KategoriId";
+                var par = new
+                {
+                    KategoriId = KategoriId
+                };
+                return conn.Query<Kategori>(strSql, par).SingleOrDefault();
+            }
+               
+        }
 
     }
 }

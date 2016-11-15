@@ -20,9 +20,10 @@ namespace SampleBackEnd.Controllers
         }
 
         // GET: api/Kategori/5
-        public string Get(int id)
+        public Kategori Get(int id)
         {
-            return "value";
+            KategoriDAL kategoriDAL = new KategoriDAL();
+            return kategoriDAL.GetById(id);
         }
 
         // POST: api/Kategori
