@@ -42,8 +42,18 @@ namespace SampleBackEnd.Controllers
         }
 
         // PUT: api/Kategori/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(Kategori kategori)
         {
+            KategoriDAL kategoriDAL = new KategoriDAL();
+            try
+            {
+                kategoriDAL.Update(kategori);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // DELETE: api/Kategori/5
