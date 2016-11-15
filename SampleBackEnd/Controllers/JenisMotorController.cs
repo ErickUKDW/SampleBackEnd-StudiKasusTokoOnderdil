@@ -20,9 +20,10 @@ namespace SampleBackEnd.Controllers
         }
 
         // GET: api/JenisMotor/5
-        public string Get(int id)
+        public JenisMotor Get(int id)
         {
-            return "value";
+            JenisMotorDAL jenisMotorDAL = new JenisMotorDAL();
+            return jenisMotorDAL.GetById(id);
         }
 
         // POST: api/JenisMotor

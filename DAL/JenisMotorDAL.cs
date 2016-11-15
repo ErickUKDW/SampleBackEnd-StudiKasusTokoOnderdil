@@ -30,6 +30,17 @@ namespace DAL
             }
         }
 
+        public JenisMotor GetById(int IdJenisMotor)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"select * from JenisMotor 
+                                  where IdJenisMotor=@IdJenisMotor";
+                var par = new { IdJenisMotor = IdJenisMotor };
+                return conn.Query<JenisMotor>(strSql, par).SingleOrDefault();
+            }
+        }
+
         
     }
 }
