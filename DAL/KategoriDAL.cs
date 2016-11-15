@@ -22,7 +22,7 @@ namespace DAL
         {
             using (SqlConnection conn = new SqlConnection(GetConnStr()))
             {
-               
+
                 string strSql = @"select * from Kategori 
                                   order by NamaKategori";
 
@@ -63,7 +63,7 @@ namespace DAL
                 };
                 return conn.Query<Kategori>(strSql, par).SingleOrDefault();
             }
-               
+
         }
 
         public void Create(Kategori kategori)
@@ -82,6 +82,31 @@ namespace DAL
                     throw new Exception(sqlEx.Number + " - " + sqlEx.Message);
                 }
             }
+        }
+
+        public void Update(Kategori kategori)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+
+                string strSql = @"update Kategori set NamaKategori=@NamaKategori 
+                                  where KategoriId=@KategoriId";
+                var par = new
+                {
+                    NamaKategori = kategori.NamaKategori,
+                    KategoriId = kategori.KategoriId
+                };
+
+                try
+                {
+                    conn.Execute(strSql, par);
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Number + " - " + sqlEx.Message);
+                }
+            }
+
         }
 
     }
