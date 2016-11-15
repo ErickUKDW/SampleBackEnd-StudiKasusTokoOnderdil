@@ -66,5 +66,23 @@ namespace DAL
                
         }
 
+        public void Create(Kategori kategori)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"insert into Kategori(NamaKategori) 
+                                  values(@NamaKategori)";
+                var par = new { NamaKategori = kategori.NamaKategori };
+                try
+                {
+                    conn.Execute(strSql, par);
+                }
+                catch (SqlException sqlEx)
+                {
+                    throw new Exception(sqlEx.Number + " - " + sqlEx.Message);
+                }
+            }
+        }
+
     }
 }
