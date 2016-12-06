@@ -126,5 +126,19 @@ namespace DAL
             }
         }
 
+        public IEnumerable<Kategori> SearchByName(string namaKategori)
+        {
+            using (SqlConnection conn = new SqlConnection(GetConnStr()))
+            {
+                string strSql = @"select * from Kategori where 
+                                  NamaKategori like @NamaKategori 
+                                  order by NamaKategori asc";
+                var par = new { NamaKategori = "%" + namaKategori + "%" };
+
+                var results = conn.Query<Kategori>(strSql, par);
+                return results;
+            }
+        }
+
     }
 }

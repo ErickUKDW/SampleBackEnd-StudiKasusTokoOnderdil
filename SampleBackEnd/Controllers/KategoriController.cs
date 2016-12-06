@@ -70,5 +70,12 @@ namespace SampleBackEnd.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        public IEnumerable<Kategori> Get(string namaKategori)
+        {
+            KategoriDAL kategoriDAL = new KategoriDAL();
+            return kategoriDAL.SearchByName(namaKategori);
+        }
     }
 }
